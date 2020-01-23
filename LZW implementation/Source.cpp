@@ -75,11 +75,15 @@ void decompressFilesFromDirectory(std::string dirInput, std::string dirOutput, P
 	if (fs::exists(dirOutput)) !fs::remove_all(dirOutput);
 	if (!fs::create_directory(dirOutput)) throw "error occured while creating dir";
 
+	std::cout << "Decompressing files from directory, please wait :)" << std::endl;
+
 	for (auto& p : fs::directory_iterator(dirInput)) {
 		auto filepath = p.path();
 		auto filename = fs::path(filepath).filename().u8string();
 		decompressFile(filepath.u8string(), dirOutput + "//" + filename, type);
 	}
+
+	std::cout << "Decompression finished!" << std::endl;
 }
 
 

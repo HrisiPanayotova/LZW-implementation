@@ -63,8 +63,8 @@ unsigned int LZW::compress(InputStream& is, OutputStream& out, bool shouldWrite)
 	auto codeTable = this->initializeCodeTable();
 	std::string pref = "";
 	unsigned int curCode = 257;
-	std::vector<unsigned int> codes;
 	char c;
+	int count = 0;
 	while(is >> c)
 	{
 		if (codeTable.find(pref + c) != codeTable.end()) pref = pref + c;
@@ -74,6 +74,7 @@ unsigned int LZW::compress(InputStream& is, OutputStream& out, bool shouldWrite)
 			codeTable[pref + c] = curCode++;
 			pref = c;
 		}
+		count++;
 
 	}
 	if (codeTable.find(pref) == codeTable.end()) codeTable[pref] = curCode;
@@ -102,6 +103,7 @@ void LZW::decompress(InputStream& is, OutputStream& out) {
 			auto tempStr = codeTable[old];
 			codeTable[curCode++] = tempStr + tempStr[0];
 			out << (tempStr + tempStr[0]);
+			old = temp;
 		}
 		temp = 0;
 	}
