@@ -1,6 +1,6 @@
 # LZW compression algorithm - implementation
 
-Implementation of the LZW compression algorithm in two variants. The first one - fixed, compresses the files using exactly 3 bytes for each code. The second one - changeable, different compression length codes for each file, as it determines the amount of bits needed for each code.
+Implementation of the LZW compression algorithm in two variants. The first one - fixed, compresses the files using exactly 3 bytes for each code. The second one - changeable, different compression length codes for each file, as it determines the amount of bits needed for each code. The project uses C++17.
 
 Usage:
 
