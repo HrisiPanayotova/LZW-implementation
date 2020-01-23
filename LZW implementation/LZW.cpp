@@ -64,7 +64,6 @@ unsigned int LZW::compress(InputStream& is, OutputStream& out, bool shouldWrite)
 	std::string pref = "";
 	unsigned int curCode = 257;
 	char c;
-	int count = 0;
 	while(is >> c)
 	{
 		if (codeTable.find(pref + c) != codeTable.end()) pref = pref + c;
@@ -74,8 +73,6 @@ unsigned int LZW::compress(InputStream& is, OutputStream& out, bool shouldWrite)
 			codeTable[pref + c] = curCode++;
 			pref = c;
 		}
-		count++;
-
 	}
 	if (codeTable.find(pref) == codeTable.end()) codeTable[pref] = curCode;
 	auto code = codeTable[pref];
