@@ -13,6 +13,8 @@ Usage:
  * `-decomprfc <inputFileName> <outputFileName>` - decompresses the input file in the file with name outputFileName using the changeable decompression
  
  * `-comprdirall <inputDirName>` - compresses all file in the folder with name `inputDirName`, by creating a 2 folders called `changeableLZWCompression` & `fixedLZWCompression`. All the files in directory will be compressed with the changeable compression in `changeableLZWCompression` and with the fixed -> `fixedLZWCompression`. A csv file `result.csv` will be created, containing information on the compression results.
+
+ * `-comprdirallcantrbry` - calls `-comprdirall <inputDirName>` with the cantrbry folder from the resources. Keep in mind that you have to wait a bit for the compression to end
  
  * `-decomprdirf <inputDirName> <outputDirName>` - decompresses all the files from `inputDirName` to the folder denoted by `outputDirName` using the fixed decompression 
 

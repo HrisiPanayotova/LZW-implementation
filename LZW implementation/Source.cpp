@@ -52,6 +52,8 @@ void compressFilesFromDirectory(std::string dirName) {
 	if (fs::exists(changeableDir)) fs::remove_all(changeableDir);
 	if (!fs::create_directory(changeableDir)) throw "error occured while creating dir";
 
+	std::cout << "Compressing files from directory, please wait :)" << std::endl;
+
 	std::ofstream csvResult("result.csv");
 	csvResult << "File Name, File Size Before, File Size After LZW Fixed, Compression Ratio LZW Fixed, File Size After LZW Changeable, Compression Ratio LZW Changeable" << std::endl;
 
@@ -64,6 +66,8 @@ void compressFilesFromDirectory(std::string dirName) {
 			std::setprecision(2) << std::fixed << lzwFixedResult.compressionRatio * 100 << '%' << ',' << lzwChangeableResult.sizeAfter << ',' << std::setprecision(2) << std::fixed <<
 			lzwChangeableResult.compressionRatio * 100 << '%' <<std::endl;
 	}
+
+	std::cout << "Compression finished!" << std::endl;
 }
 
 void decompressFilesFromDirectory(std::string dirInput, std::string dirOutput, ProgramTypes type) {
@@ -96,5 +100,5 @@ int main(int argv, const char** argc) {
 	if (mode == "-comprdirall") compressFilesFromDirectory(argc[2]);
 	if (mode == "-decomprdirf") decompressFilesFromDirectory(argc[2], argc[3], ProgramTypes::DecompressFixedLZWFile);
 	if (mode == "-decomprdirc") decompressFilesFromDirectory(argc[2], argc[3], ProgramTypes::DecompressChangeableLZWFile);
-
+	if (mode == "-comprdirallcantrbry") compressFilesFromDirectory("../resources/cantrbry");
 }
